@@ -1,11 +1,11 @@
-import sqlalchemy
 import sqlite3
 
-engine = sqlalchemy.create_engine('sqlite:///../db/database.db')
-conn = engine.connect()
-metadata = sqlalchemy.MetaData()
-inspetor = sqlalchemy.inspect(engine)
+from sqlalchemy import create_engine, MetaData, inspect
+from sqlalchemy.orm import sessionmaker
 
+from models import Base
 
-
+engine = create_engine('sqlite:///../db/database.db')
+inspetor = inspect(engine)
+Session = sessionmaker(bind=engine)
 
